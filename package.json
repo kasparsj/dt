@@ -2,8 +2,12 @@
   "name": "rnd",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
   "source": "src/index.js",
+  "targets": {
+    "default": {
+      "outputFormat": "global"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:prod": "parcel build",
