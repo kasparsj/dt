@@ -1,17 +1,17 @@
 import randomColor from "randomcolor";
 import {lerp} from "./math";
 
-let randFn = Math.random;
+let rndFn = Math.random;
 const _cache = {};
 const gaussPrev = {};
 
-const setRandom = (func) => {
-    randFn = func;
+const setfn = (func) => {
+    rndFn = func;
 }
 
 // random number between a and b (b is not included)
 const num = (a = 0.0, b = 1.0) => {
-    return lerp(a, b, randFn());
+    return lerp(a, b, rndFn());
 }
 
 // random integer between a and b (b is included)
@@ -22,7 +22,7 @@ const int = (a, b) => {
 
 // random boolean with p as percent likelihood of true
 const bool = (p = 0.5) => {
-    return randFn() < p;
+    return rndFn() < p;
 }
 
 // choose a random item in an array of items
@@ -31,7 +31,7 @@ const choice = (list) => {
 }
 
 const exp = (a, b, n = 2) => {
-    return a + randFn() ** n * (b - a);
+    return a + rndFn() ** n * (b - a);
 }
 
 const gauss = (mean, sd = 1, y1 = false, prevKey = 'gauss') => {
@@ -61,7 +61,7 @@ const gaussMinMax = (a = 0, b = 1, y1 = false, prevKey = 'gaussMinMax') => {
 
 const cache = (name, gen) => {
     if (!_cache[name]) {
-        _cache[name] = (gen || randFn)();
+        _cache[name] = (gen || rndFn)();
     }
     return _cache[name];
 }
@@ -96,6 +96,6 @@ const color = (options) => {
     });
 }
 
-window.rnd = { num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color };
+window.rnd = { setfn, num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color };
 
-export { num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color }
+export { setfn, num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color }
