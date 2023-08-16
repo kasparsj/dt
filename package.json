@@ -2,9 +2,10 @@
   "name": "rnd",
   "version": "1.0.0",
   "description": "",
-  "source": "src/index.js",
+  "module": "src/index.js",
   "targets": {
     "default": {
+      "source": "src/index.js",
       "outputFormat": "global"
     }
   },
