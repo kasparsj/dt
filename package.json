@@ -1,5 +1,5 @@
 {
-  "name": "rnd",
+  "name": "dt",
   "version": "1.0.0",
   "description": "",
   "module": "src/index.js",
@@ -17,16 +17,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kasparsj/fxrand.git"
+    "url": "git+https://github.com/kasparsj/dt.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kasparsj/rnd/issues"
+    "url": "https://github.com/kasparsj/dt/issues"
   },
-  "homepage": "https://github.com/kasparsj/fxrand#readme",
+  "homepage": "https://github.com/kasparsj/dt#readme",
   "dependencies": {
-    "randomcolor": "^0.6.2"
+    "randomcolor": "^0.6.2",
+    "noisejs": "^2.1.0",
+    "simplex-noise": "^4.0.1"
   },
   "devDependencies": {
     "parcel": "^2.9.3"

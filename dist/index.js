@@ -15,7 +15,7 @@ typeof globalThis !== 'undefined'
 var $parcel$modules = {};
 var $parcel$inits = {};
 
-var parcelRequire = $parcel$global["parcelRequire8fbd"];
+var parcelRequire = $parcel$global["parcelRequireceb7"];
 if (parcelRequire == null) {
   parcelRequire = function(id) {
     if (id in $parcel$modules) {
@@ -38,7 +38,7 @@ if (parcelRequire == null) {
     $parcel$inits[id] = init;
   };
 
-  $parcel$global["parcelRequire8fbd"] = parcelRequire;
+  $parcel$global["parcelRequireceb7"] = parcelRequire;
 }
 parcelRequire.register("3UDaX", function(module, exports) {
 // randomColor by David Merfield under the CC0 license
@@ -686,76 +686,76 @@ const $3fc3b968ae0cf52c$export$c4e2ecac49351ef2 = (n, low = 0, high = 1.0)=>{
 };
 
 
-let $6efb768676258e07$var$rndFn = Math.random;
-const $6efb768676258e07$var$_cache = {};
-const $6efb768676258e07$var$gaussPrev = {};
-const $6efb768676258e07$export$b0728870bc7c976a = (func)=>{
-    $6efb768676258e07$var$rndFn = func;
+let $3168d8109a341ea3$var$rndFn = Math.random;
+const $3168d8109a341ea3$var$_cache = {};
+const $3168d8109a341ea3$var$gaussPrev = {};
+const $3168d8109a341ea3$export$b0728870bc7c976a = (func)=>{
+    $3168d8109a341ea3$var$rndFn = func;
 };
 // random number between a and b (b is not included)
-const $6efb768676258e07$export$61cc6a0be4938a2a = (a = 0.0, b = 1.0)=>{
-    return (0, $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f)(a, b, $6efb768676258e07$var$rndFn());
+const $3168d8109a341ea3$export$61cc6a0be4938a2a = (a = 0.0, b = 1.0)=>{
+    return (0, $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f)(a, b, $3168d8109a341ea3$var$rndFn());
 };
 // random integer between a and b (b is included)
 // requires a < b
-const $6efb768676258e07$export$7d260a2a5f8bc19e = (a, b)=>{
-    return Math.floor($6efb768676258e07$export$61cc6a0be4938a2a(a, b + 1));
+const $3168d8109a341ea3$export$7d260a2a5f8bc19e = (a, b)=>{
+    return Math.floor($3168d8109a341ea3$export$61cc6a0be4938a2a(a, b + 1));
 };
 // random boolean with p as percent likelihood of true
-const $6efb768676258e07$export$87b259aa03e3d267 = (p = 0.5)=>{
-    return $6efb768676258e07$var$rndFn() < p;
+const $3168d8109a341ea3$export$87b259aa03e3d267 = (p = 0.5)=>{
+    return $3168d8109a341ea3$var$rndFn() < p;
 };
 // choose a random item in an array of items
-const $6efb768676258e07$export$7a5825874deea16a = (list)=>{
-    return list[$6efb768676258e07$export$7d260a2a5f8bc19e(0, list.length - 1)];
+const $3168d8109a341ea3$export$7a5825874deea16a = (list)=>{
+    return list[$3168d8109a341ea3$export$7d260a2a5f8bc19e(0, list.length - 1)];
 };
-const $6efb768676258e07$export$b310ec824aaee37f = (a, b, n = 2)=>{
-    return a + $6efb768676258e07$var$rndFn() ** n * (b - a);
+const $3168d8109a341ea3$export$b310ec824aaee37f = (a, b, n = 2)=>{
+    return a + $3168d8109a341ea3$var$rndFn() ** n * (b - a);
 };
-const $6efb768676258e07$export$770bce1690f63f17 = (mean, sd = 1, y1 = false, prevKey = "gauss")=>{
+const $3168d8109a341ea3$export$770bce1690f63f17 = (mean, sd = 1, y1 = false, prevKey = "gauss")=>{
     let x1, x2, w;
     if (y1 === false) {
-        if ($6efb768676258e07$var$gaussPrev[prevKey]) {
-            y1 = $6efb768676258e07$var$gaussPrev[prevKey];
-            delete $6efb768676258e07$var$gaussPrev[prevKey];
+        if ($3168d8109a341ea3$var$gaussPrev[prevKey]) {
+            y1 = $3168d8109a341ea3$var$gaussPrev[prevKey];
+            delete $3168d8109a341ea3$var$gaussPrev[prevKey];
         } else {
             do {
-                x1 = $6efb768676258e07$export$61cc6a0be4938a2a(0, 2) - 1;
-                x2 = $6efb768676258e07$export$61cc6a0be4938a2a(0, 2) - 1;
+                x1 = $3168d8109a341ea3$export$61cc6a0be4938a2a(0, 2) - 1;
+                x2 = $3168d8109a341ea3$export$61cc6a0be4938a2a(0, 2) - 1;
                 w = x1 * x1 + x2 * x2;
             }while (w >= 1);
             w = Math.sqrt(-2 * Math.log(w) / w);
             y1 = x1 * w;
-            $6efb768676258e07$var$gaussPrev[prevKey] = x2 * w;
+            $3168d8109a341ea3$var$gaussPrev[prevKey] = x2 * w;
         }
     }
     const m = mean || 0;
     return y1 * sd + m;
 };
-const $6efb768676258e07$export$30bcd85f437fc607 = (a = 0, b = 1, y1 = false, prevKey = "gaussMinMax")=>{
-    return $6efb768676258e07$export$770bce1690f63f17(a + (b - a) / 2, (b - a) / 2, y1, prevKey);
+const $3168d8109a341ea3$export$30bcd85f437fc607 = (a = 0, b = 1, y1 = false, prevKey = "gaussMinMax")=>{
+    return $3168d8109a341ea3$export$770bce1690f63f17(a + (b - a) / 2, (b - a) / 2, y1, prevKey);
 };
-const $6efb768676258e07$export$69a3209f1a06c04d = (name, gen)=>{
-    if (!$6efb768676258e07$var$_cache[name]) $6efb768676258e07$var$_cache[name] = (gen || $6efb768676258e07$var$rndFn)();
-    return $6efb768676258e07$var$_cache[name];
+const $3168d8109a341ea3$export$69a3209f1a06c04d = (name, gen)=>{
+    if (!$3168d8109a341ea3$var$_cache[name]) $3168d8109a341ea3$var$_cache[name] = (gen || $3168d8109a341ea3$var$rndFn)();
+    return $3168d8109a341ea3$var$_cache[name];
 };
-const $6efb768676258e07$export$63ed2dc4b9bddf35 = (name, a = 0.0, b = 1.0)=>{
-    return (0, $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f)(a, b, $6efb768676258e07$export$69a3209f1a06c04d(name));
+const $3168d8109a341ea3$export$63ed2dc4b9bddf35 = (name, a = 0.0, b = 1.0)=>{
+    return (0, $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f)(a, b, $3168d8109a341ea3$export$69a3209f1a06c04d(name));
 };
-const $6efb768676258e07$export$ff729b6547d3cd4 = (name, mean, sd = 1, prevKey = "cacheGauss")=>{
-    return $6efb768676258e07$export$69a3209f1a06c04d(name, ()=>{
-        return $6efb768676258e07$export$770bce1690f63f17(mean, sd, false, prevKey);
+const $3168d8109a341ea3$export$ff729b6547d3cd4 = (name, mean, sd = 1, prevKey = "cacheGauss")=>{
+    return $3168d8109a341ea3$export$69a3209f1a06c04d(name, ()=>{
+        return $3168d8109a341ea3$export$770bce1690f63f17(mean, sd, false, prevKey);
     });
 };
-const $6efb768676258e07$export$1d95d1e0fadf82f8 = (name, a = 0, b = 1, prevKey = "cacheGaussMinMax")=>{
-    return $6efb768676258e07$export$69a3209f1a06c04d(name, ()=>{
-        return $6efb768676258e07$export$30bcd85f437fc607(a, b, false, prevKey);
+const $3168d8109a341ea3$export$1d95d1e0fadf82f8 = (name, a = 0, b = 1, prevKey = "cacheGaussMinMax")=>{
+    return $3168d8109a341ea3$export$69a3209f1a06c04d(name, ()=>{
+        return $3168d8109a341ea3$export$30bcd85f437fc607(a, b, false, prevKey);
     });
 };
-const $6efb768676258e07$export$949f46e8b9b85930 = (name, p = 0.5)=>{
-    return $6efb768676258e07$export$69a3209f1a06c04d(name) < p;
+const $3168d8109a341ea3$export$949f46e8b9b85930 = (name, p = 0.5)=>{
+    return $3168d8109a341ea3$export$69a3209f1a06c04d(name) < p;
 };
-const $6efb768676258e07$export$35e9368ef982300f = (options)=>{
+const $3168d8109a341ea3$export$35e9368ef982300f = (options)=>{
     return (0, (/*@__PURE__*/$parcel$interopDefault($3UDaX)))(Object.assign({
         format: "rgbArray"
     }, options || {})).map((v)=>{
@@ -764,21 +764,23 @@ const $6efb768676258e07$export$35e9368ef982300f = (options)=>{
     });
 };
 window.rnd = {
-    setfn: $6efb768676258e07$export$b0728870bc7c976a,
-    num: $6efb768676258e07$export$61cc6a0be4938a2a,
-    int: $6efb768676258e07$export$7d260a2a5f8bc19e,
-    bool: $6efb768676258e07$export$87b259aa03e3d267,
-    choice: $6efb768676258e07$export$7a5825874deea16a,
-    exp: $6efb768676258e07$export$b310ec824aaee37f,
-    gauss: $6efb768676258e07$export$770bce1690f63f17,
-    gaussMinMax: $6efb768676258e07$export$30bcd85f437fc607,
-    cache: $6efb768676258e07$export$69a3209f1a06c04d,
-    cacheNum: $6efb768676258e07$export$63ed2dc4b9bddf35,
-    cacheGauss: $6efb768676258e07$export$ff729b6547d3cd4,
-    cacheGaussMinMax: $6efb768676258e07$export$1d95d1e0fadf82f8,
-    cacheBool: $6efb768676258e07$export$949f46e8b9b85930,
-    color: $6efb768676258e07$export$35e9368ef982300f
+    setfn: $3168d8109a341ea3$export$b0728870bc7c976a,
+    num: $3168d8109a341ea3$export$61cc6a0be4938a2a,
+    int: $3168d8109a341ea3$export$7d260a2a5f8bc19e,
+    bool: $3168d8109a341ea3$export$87b259aa03e3d267,
+    choice: $3168d8109a341ea3$export$7a5825874deea16a,
+    exp: $3168d8109a341ea3$export$b310ec824aaee37f,
+    gauss: $3168d8109a341ea3$export$770bce1690f63f17,
+    gaussMinMax: $3168d8109a341ea3$export$30bcd85f437fc607,
+    cache: $3168d8109a341ea3$export$69a3209f1a06c04d,
+    cacheNum: $3168d8109a341ea3$export$63ed2dc4b9bddf35,
+    cacheGauss: $3168d8109a341ea3$export$ff729b6547d3cd4,
+    cacheGaussMinMax: $3168d8109a341ea3$export$1d95d1e0fadf82f8,
+    cacheBool: $3168d8109a341ea3$export$949f46e8b9b85930,
+    color: $3168d8109a341ea3$export$35e9368ef982300f
 };
+
+
 
 })();
 //# sourceMappingURL=index.js.map
