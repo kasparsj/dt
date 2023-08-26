@@ -1,13 +1,15 @@
+import * as arr from "./arr";
+
 const bw = (bufferSize, sampleRate) => {
     return sampleRate / bufferSize;
 }
 
 const bin = (freq, bufferSize = 512, sampleRate = 44100) => {
-    return Math.floor(freq / fftBw(bufferSize, sampleRate));
+    return Math.floor(freq / bw(bufferSize, sampleRate));
 }
 
 const freq = (bin, bufferSize = 512, sampleRate = 44100) => {
-    return bin * fftBw(bufferSize, sampleRate);
+    return bin * bw(bufferSize, sampleRate);
 }
 
 const extract = (signal, options = {}) => {
@@ -26,11 +28,11 @@ const extract = (signal, options = {}) => {
     for (let i=0; i<signal.length; i += options.chunkSize) {
         let data = signal.slice(i, i + options.chunkSize);
         if (data.length < options.chunkSize) {
-            data = padTo(data, nextPow2(data.length));
+            data = arr.padTo(data, nextPow2(data.length));
         }
         Meyda.bufferSize = options.bufferSize;
         let fft = Meyda.extract(options.feature, data);
-        let value = avg(fft.slice(options.loBin, options.hiBin + 1));
+        let value = arr.avg(fft.slice(options.loBin, options.hiBin + 1));
         values.push(value);
     }
     Meyda.bufferSize = origBufferSize;
