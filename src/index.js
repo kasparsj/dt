@@ -1,3 +1,3 @@
 import "./rnd"
 import "./noise"
-import "./dt"
+import "./arr"

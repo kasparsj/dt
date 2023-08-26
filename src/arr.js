@@ -48,4 +48,6 @@ const image = (url) => {
     return data;
 }
 
-export { noise, random, image }
+window.arr = { noise, random, image };
+
+export { noise, random, image };
