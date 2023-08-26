@@ -26,9 +26,10 @@
   },
   "homepage": "https://github.com/kasparsj/dt#readme",
   "dependencies": {
-    "randomcolor": "^0.6.2",
     "noisejs": "^2.1.0",
-    "simplex-noise": "^4.0.1"
+    "randomcolor": "^0.6.2",
+    "simplex-noise": "^4.0.1",
+    "three": "^0.155.0"
   },
   "devDependencies": {
     "parcel": "^2.9.3"

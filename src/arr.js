@@ -1,5 +1,5 @@
 import * as noiseLib from "./noise";
-import * as rnd from "rnd";
+import * as rnd from "./rnd";
 
 const noise = (width, height, options = {}) => {
     options = Object.assign({
