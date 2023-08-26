@@ -1,6 +1,17 @@
 import * as noiseLib from "./noise";
 import * as rnd from "./rnd";
 
+const create = (len, mapfn) => {
+    return Array.from({length: len}, mapfn);
+}
+
+const uint8 = (len, mapfn) => {
+    return Uint8Array.from({length: len}, mapfn);
+}
+
+const float32 = (len, mapfn) => {
+    return Float32Array.from({length: len}, mapfn);
+}
 const noise = (width, height, options = {}) => {
     options = Object.assign({
         type: 'improved',
@@ -48,6 +59,6 @@ const image = (url) => {
     return data;
 }
 
-window.arr = { noise, random, image };
+window.arr = { create, uint8, float32, noise, random, image };
 
-export { noise, random, image };
+export { create, uint8, float32, noise, random, image };

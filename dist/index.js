@@ -2403,6 +2403,21 @@ window.noise = {
 
 
 
+const $9c47f2c9245cc4b2$export$185802fd694ee1f5 = (len, mapfn)=>{
+    return Array.from({
+        length: len
+    }, mapfn);
+};
+const $9c47f2c9245cc4b2$export$52e103c63c4e68cf = (len, mapfn)=>{
+    return Uint8Array.from({
+        length: len
+    }, mapfn);
+};
+const $9c47f2c9245cc4b2$export$1a4bac2aea11f30e = (len, mapfn)=>{
+    return Float32Array.from({
+        length: len
+    }, mapfn);
+};
 const $9c47f2c9245cc4b2$export$d3022aad56692482 = (width, height, options = {})=>{
     options = Object.assign({
         type: "improved",
@@ -2444,6 +2459,9 @@ const $9c47f2c9245cc4b2$export$5c452ff88e35e47d = (url)=>{
     return data;
 };
 window.arr = {
+    create: $9c47f2c9245cc4b2$export$185802fd694ee1f5,
+    uint8: $9c47f2c9245cc4b2$export$52e103c63c4e68cf,
+    float32: $9c47f2c9245cc4b2$export$1a4bac2aea11f30e,
     noise: $9c47f2c9245cc4b2$export$d3022aad56692482,
     random: $9c47f2c9245cc4b2$export$4385e60b38654f68,
     image: $9c47f2c9245cc4b2$export$5c452ff88e35e47d
