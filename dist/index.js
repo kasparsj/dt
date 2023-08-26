@@ -2458,13 +2458,38 @@ const $9c47f2c9245cc4b2$export$5c452ff88e35e47d = (url)=>{
     });
     return data;
 };
+const $9c47f2c9245cc4b2$export$8a63f25cc62965f1 = (list)=>{
+    return list.reduce((partialSum, a)=>partialSum + a, 0);
+};
+const $9c47f2c9245cc4b2$export$6e3a27864ab166fe = (list, mul)=>{
+    return list.map((v)=>v * mul);
+};
+const $9c47f2c9245cc4b2$export$fcbe1efa6919329 = (arr, len, value = 0)=>{
+    if (arr.length < len) {
+        const padding = new Array(len - arr.length).fill(value); // Creates an array filled with zeros.
+        return arr.concat(padding);
+    }
+    return arr;
+};
+const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, min = 0, max = 0)=>{
+    max = max || Math.max(...arr);
+    return arr.map((value)=>(value - min) / (max - min));
+};
+const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
+    return arr.reduce((acc, value)=>acc + value, 0) / arr.length;
+};
 window.arr = {
     create: $9c47f2c9245cc4b2$export$185802fd694ee1f5,
     uint8: $9c47f2c9245cc4b2$export$52e103c63c4e68cf,
     float32: $9c47f2c9245cc4b2$export$1a4bac2aea11f30e,
     noise: $9c47f2c9245cc4b2$export$d3022aad56692482,
     random: $9c47f2c9245cc4b2$export$4385e60b38654f68,
-    image: $9c47f2c9245cc4b2$export$5c452ff88e35e47d
+    image: $9c47f2c9245cc4b2$export$5c452ff88e35e47d,
+    sum: $9c47f2c9245cc4b2$export$8a63f25cc62965f1,
+    mul: $9c47f2c9245cc4b2$export$6e3a27864ab166fe,
+    padTo: $9c47f2c9245cc4b2$export$fcbe1efa6919329,
+    normalize: $9c47f2c9245cc4b2$export$a3295358bff77e,
+    avg: $9c47f2c9245cc4b2$export$86c4352b5bd9c815
 };
 
 

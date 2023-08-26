@@ -59,6 +59,31 @@ const image = (url) => {
     return data;
 }
 
-window.arr = { create, uint8, float32, noise, random, image };
+const sum = (list) => {
+    return list.reduce((partialSum, a) => partialSum + a, 0);
+};
 
-export { create, uint8, float32, noise, random, image };
+const mul = (list, mul) => {
+    return list.map((v) => v * mul);
+};
+
+const padTo = (arr, len, value = 0) => {
+    if (arr.length < len) {
+        const padding = new Array(len - arr.length).fill(value); // Creates an array filled with zeros.
+        return arr.concat(padding);
+    }
+    return arr;
+}
+
+const normalize = (arr, min = 0, max = 0) => {
+    max = max || Math.max(...arr);
+    return arr.map(value => (value - min) / (max - min));
+}
+
+const avg = (arr) => {
+    return arr.reduce((acc, value) => acc + value, 0) / arr.length;
+}
+
+window.arr = { create, uint8, float32, noise, random, image, sum, mul, padTo, normalize, avg };
+
+export { create, uint8, float32, noise, random, image, sum, mul, padTo, normalize, avg };
