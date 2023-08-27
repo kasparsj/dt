@@ -1,4 +1,5 @@
 import * as arr from "./arr";
+import * as math from "./math";
 
 const bw = (bufferSize, sampleRate) => {
     return sampleRate / bufferSize;
@@ -28,7 +29,7 @@ const extract = (signal, options = {}) => {
     for (let i=0; i<signal.length; i += options.chunkSize) {
         let data = signal.slice(i, i + options.chunkSize);
         if (data.length < options.chunkSize) {
-            data = arr.padTo(data, nextPow2(data.length));
+            data = arr.padTo(data, math.nextPow2(data.length));
         }
         Meyda.bufferSize = options.bufferSize;
         let fft = Meyda.extract(options.feature, data);

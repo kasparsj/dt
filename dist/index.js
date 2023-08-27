@@ -687,6 +687,15 @@ const $3fc3b968ae0cf52c$export$871de8747c9eaa88 = (n, start1, stop1, start2, sto
 const $3fc3b968ae0cf52c$export$c4e2ecac49351ef2 = (n, low = 0, high = 1.0)=>{
     return Math.max(Math.min(n, high), low);
 };
+const $3fc3b968ae0cf52c$export$f0d90cf68bd426eb = (n)=>{
+    return Math.pow(2, Math.ceil(Math.log(n) / Math.log(2)));
+};
+window.math = {
+    lerp: $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f,
+    map: $3fc3b968ae0cf52c$export$871de8747c9eaa88,
+    constrain: $3fc3b968ae0cf52c$export$c4e2ecac49351ef2,
+    nextPow2: $3fc3b968ae0cf52c$export$f0d90cf68bd426eb
+};
 
 
 let $3168d8109a341ea3$var$rndFn = Math.random;
@@ -2494,6 +2503,7 @@ window.arr = {
 
 
 
+
 const $2d2b90f04cc861b4$export$45d219bdcd8ac53c = (bufferSize, sampleRate)=>{
     return sampleRate / bufferSize;
 };
@@ -2516,7 +2526,7 @@ const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
     let values = [];
     for(let i = 0; i < signal.length; i += options.chunkSize){
         let data = signal.slice(i, i + options.chunkSize);
-        if (data.length < options.chunkSize) data = $9c47f2c9245cc4b2$export$fcbe1efa6919329(data, nextPow2(data.length));
+        if (data.length < options.chunkSize) data = $9c47f2c9245cc4b2$export$fcbe1efa6919329(data, $3fc3b968ae0cf52c$export$f0d90cf68bd426eb(data.length));
         Meyda.bufferSize = options.bufferSize;
         let fft = Meyda.extract(options.feature, data);
         let value = $9c47f2c9245cc4b2$export$86c4352b5bd9c815(fft.slice(options.loBin, options.hiBin + 1));

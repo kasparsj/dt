@@ -18,4 +18,10 @@ const constrain = (n, low = 0, high = 1.0) => {
     return Math.max(Math.min(n, high), low);
 };
 
-export { lerp, map, constrain }
+const nextPow2 = (n) => {
+    return Math.pow(2, Math.ceil(Math.log(n) / Math.log(2)));
+}
+
+window.math = { lerp, map, constrain, nextPow2 };
+
+export { lerp, map, constrain, nextPow2 }
