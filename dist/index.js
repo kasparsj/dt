@@ -2400,8 +2400,8 @@ $parcel$export($9c47f2c9245cc4b2$exports, "uint8", () => $9c47f2c9245cc4b2$expor
 $parcel$export($9c47f2c9245cc4b2$exports, "float32", () => $9c47f2c9245cc4b2$export$1a4bac2aea11f30e);
 $parcel$export($9c47f2c9245cc4b2$exports, "noise", () => $9c47f2c9245cc4b2$export$d3022aad56692482);
 $parcel$export($9c47f2c9245cc4b2$exports, "random", () => $9c47f2c9245cc4b2$export$4385e60b38654f68);
-$parcel$export($9c47f2c9245cc4b2$exports, "image", () => $9c47f2c9245cc4b2$export$5c452ff88e35e47d);
 $parcel$export($9c47f2c9245cc4b2$exports, "grid", () => $9c47f2c9245cc4b2$export$85fc379452d91af0);
+$parcel$export($9c47f2c9245cc4b2$exports, "image", () => $9c47f2c9245cc4b2$export$5c452ff88e35e47d);
 $parcel$export($9c47f2c9245cc4b2$exports, "sum", () => $9c47f2c9245cc4b2$export$8a63f25cc62965f1);
 $parcel$export($9c47f2c9245cc4b2$exports, "mul", () => $9c47f2c9245cc4b2$export$6e3a27864ab166fe);
 $parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$export$fcbe1efa6919329);
@@ -2424,28 +2424,61 @@ const $9c47f2c9245cc4b2$export$1a4bac2aea11f30e = (len, mapfn)=>{
         length: len
     }, mapfn);
 };
-const $9c47f2c9245cc4b2$export$d3022aad56692482 = (width, height, options = {})=>{
+const $9c47f2c9245cc4b2$export$d3022aad56692482 = (width, height = 1, options = {})=>{
+    if (typeof height === "object") {
+        options = height;
+        height = 1;
+    }
     options = Object.assign({
         type: "improved",
-        scale: 1.0
+        scale: 1.0,
+        tw: width
     }, options);
     const data = new Uint8Array(width * height);
     for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
         const n = ($6b43bac69b71d100$exports[options.type].get2(i, j, options.scale) + 1.0) / 2.0;
         data[i * width + j] = Math.round(n * 255);
     }
-    data.width = width;
-    data.height = height;
+    data.width = options.tw;
+    data.height = width * height / options.tw;
     return data;
 };
-const $9c47f2c9245cc4b2$export$4385e60b38654f68 = (width, height, options = {})=>{
-    const data = new Uint8Array(width * height);
+const $9c47f2c9245cc4b2$export$4385e60b38654f68 = (width, height = 1, options = {})=>{
+    if (typeof height === "object") {
+        options = height;
+        height = 1;
+    }
+    options = Object.assign({
+        min: 0,
+        tw: width
+    }, options);
+    options.max = options.max || (options.type === "float" ? 1 : 255);
+    const cl = options.type === "float" ? Float32Array : Uint8Array;
+    const data = new cl(width * height);
     for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
-        const n = Math.round($3168d8109a341ea3$export$61cc6a0be4938a2a() * 255);
+        const n = options.min + Math.round($3168d8109a341ea3$export$61cc6a0be4938a2a() * options.max);
         data[i * width + j] = n;
     }
-    data.width = width;
-    data.height = height;
+    data.width = options.tw;
+    data.height = width * height / options.tw;
+    return data;
+};
+const $9c47f2c9245cc4b2$export$85fc379452d91af0 = (width, height = 1, options = {})=>{
+    if (typeof height === "object") {
+        options = height;
+        height = 1;
+    }
+    options = Object.assign({
+        tw: width
+    }, options);
+    const data = new Uint8Array(width * height * 2);
+    for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
+        data[i * width * 2 + j * 2] = j / (width - 1) * 255;
+        data[i * width * 2 + j * 2 + 1] = i / (height - 1) * 255;
+    }
+    data.width = options.tw;
+    data.height = width * height / options.tw;
+    data.format = "luminance alpha";
     return data;
 };
 const $9c47f2c9245cc4b2$export$5c452ff88e35e47d = (url)=>{
@@ -2462,13 +2495,6 @@ const $9c47f2c9245cc4b2$export$5c452ff88e35e47d = (url)=>{
         data.width = image.width;
         data.height = image.height;
     });
-    return data;
-};
-const $9c47f2c9245cc4b2$export$85fc379452d91af0 = (width, height, options = {})=>{
-    const data = new Uint8Array(width * height);
-    for(let i = 0; i < height; i++)for(let j = 0; j < width; j++)data[i * width + j] = (i / (height - 1) + j / (width - 1)) / 2 * 255;
-    data.width = width;
-    data.height = height;
     return data;
 };
 const $9c47f2c9245cc4b2$export$8a63f25cc62965f1 = (list)=>{

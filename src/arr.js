@@ -12,10 +12,15 @@ const uint8 = (len, mapfn) => {
 const float32 = (len, mapfn) => {
     return Float32Array.from({length: len}, mapfn);
 }
-const noise = (width, height, options = {}) => {
+const noise = (width, height = 1, options = {}) => {
+    if (typeof(height) === 'object') {
+        options = height;
+        height = 1;
+    }
     options = Object.assign({
         type: 'improved',
         scale: 1.0,
+        tw: width,
     }, options);
     const data = new Uint8Array(width * height);
     for (let i = 0; i < height; i++) {
@@ -24,21 +29,52 @@ const noise = (width, height, options = {}) => {
             data[i * width + j] = Math.round(n * 255);
         }
     }
-    data.width = width;
-    data.height = height;
+    data.width = options.tw;
+    data.height = width * height / options.tw;
     return data;
 }
 
-const random = (width, height, options = {}) => {
-    const data = new Uint8Array(width * height);
+const random = (width, height = 1, options = {}) => {
+    if (typeof(height) === 'object') {
+        options = height;
+        height = 1;
+    }
+    options = Object.assign({
+        min: 0,
+        tw: width,
+    }, options);
+    options.max = options.max || (options.type === 'float' ? 1 : 255);
+    const cl = options.type === 'float' ? Float32Array : Uint8Array;
+    const data = new cl(width * height);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
-            const n = Math.round(rnd.num() * 255);
+            const n = options.min + Math.round(rnd.num() * options.max);
             data[i * width + j] = n;
         }
     }
-    data.width = width;
-    data.height = height;
+    data.width = options.tw;
+    data.height = width * height / options.tw;
+    return data;
+}
+
+const grid = (width, height = 1, options = {}) => {
+    if (typeof(height) === 'object') {
+        options = height;
+        height = 1;
+    }
+    options = Object.assign({
+        tw: width,
+    }, options);
+    const data = new Uint8Array(width * height * 2);
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            data[i * width * 2 + j * 2] = j / (width-1) * 255;
+            data[i * width * 2 + j * 2 + 1] = i / (height-1) * 255;
+        }
+    }
+    data.width = options.tw;
+    data.height = width * height / options.tw;
+    data.format = 'luminance alpha';
     return data;
 }
 
@@ -56,18 +92,6 @@ const image = (url) => {
         data.width = image.width;
         data.height = image.height;
     });
-    return data;
-}
-
-const grid = (width, height, options = {}) => {
-    const data = new Uint8Array(width * height);
-    for (let i = 0; i < height; i++) {
-        for (let j = 0; j < width; j++) {
-            data[i * width + j] = (i / (height-1) + j / (width-1)) / 2 * 255;
-        }
-    }
-    data.width = width;
-    data.height = height;
     return data;
 }
 
