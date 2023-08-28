@@ -2561,7 +2561,7 @@ const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
 
 
 window.rnd = $3168d8109a341ea3$exports;
-window.noise = $6b43bac69b71d100$exports;
+window.nse = $6b43bac69b71d100$exports;
 window.arr = $9c47f2c9245cc4b2$exports;
 window.fft = $2d2b90f04cc861b4$exports;
 window.math = $3fc3b968ae0cf52c$exports;
