@@ -96,6 +96,4 @@ const color = (options) => {
     });
 }
 
-window.rnd = { setfn, num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color };
-
 export { setfn, num, int, bool, choice, exp, gauss, gaussMinMax, cache, cacheNum, cacheGauss, cacheGaussMinMax, cacheBool, color }

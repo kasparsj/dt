@@ -1,4 +1,11 @@
-import "./rnd"
-import "./noise"
-import "./arr"
-import "./fft"
+import * as rnd from "./rnd";
+import * as noise from "./noise";
+import * as arr from "./arr";
+import * as fft from "./fft";
+import * as math from "./math";
+
+window.rnd = rnd;
+window.noise = noise;
+window.arr = arr;
+window.fft = fft;
+window.math = math;

@@ -673,8 +673,30 @@ parcelRequire.register("3UDaX", function(module, exports) {
 
 });
 
+var $3168d8109a341ea3$exports = {};
+
+$parcel$export($3168d8109a341ea3$exports, "setfn", () => $3168d8109a341ea3$export$b0728870bc7c976a);
+$parcel$export($3168d8109a341ea3$exports, "num", () => $3168d8109a341ea3$export$61cc6a0be4938a2a);
+$parcel$export($3168d8109a341ea3$exports, "int", () => $3168d8109a341ea3$export$7d260a2a5f8bc19e);
+$parcel$export($3168d8109a341ea3$exports, "bool", () => $3168d8109a341ea3$export$87b259aa03e3d267);
+$parcel$export($3168d8109a341ea3$exports, "choice", () => $3168d8109a341ea3$export$7a5825874deea16a);
+$parcel$export($3168d8109a341ea3$exports, "exp", () => $3168d8109a341ea3$export$b310ec824aaee37f);
+$parcel$export($3168d8109a341ea3$exports, "gauss", () => $3168d8109a341ea3$export$770bce1690f63f17);
+$parcel$export($3168d8109a341ea3$exports, "gaussMinMax", () => $3168d8109a341ea3$export$30bcd85f437fc607);
+$parcel$export($3168d8109a341ea3$exports, "cache", () => $3168d8109a341ea3$export$69a3209f1a06c04d);
+$parcel$export($3168d8109a341ea3$exports, "cacheNum", () => $3168d8109a341ea3$export$63ed2dc4b9bddf35);
+$parcel$export($3168d8109a341ea3$exports, "cacheGauss", () => $3168d8109a341ea3$export$ff729b6547d3cd4);
+$parcel$export($3168d8109a341ea3$exports, "cacheGaussMinMax", () => $3168d8109a341ea3$export$1d95d1e0fadf82f8);
+$parcel$export($3168d8109a341ea3$exports, "cacheBool", () => $3168d8109a341ea3$export$949f46e8b9b85930);
+$parcel$export($3168d8109a341ea3$exports, "color", () => $3168d8109a341ea3$export$35e9368ef982300f);
 
 var $3UDaX = parcelRequire("3UDaX");
+var $3fc3b968ae0cf52c$exports = {};
+
+$parcel$export($3fc3b968ae0cf52c$exports, "lerp", () => $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f);
+$parcel$export($3fc3b968ae0cf52c$exports, "map", () => $3fc3b968ae0cf52c$export$871de8747c9eaa88);
+$parcel$export($3fc3b968ae0cf52c$exports, "constrain", () => $3fc3b968ae0cf52c$export$c4e2ecac49351ef2);
+$parcel$export($3fc3b968ae0cf52c$exports, "nextPow2", () => $3fc3b968ae0cf52c$export$f0d90cf68bd426eb);
 const $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f = (a, b, perc)=>{
     return a + (b - a) * perc;
 };
@@ -689,12 +711,6 @@ const $3fc3b968ae0cf52c$export$c4e2ecac49351ef2 = (n, low = 0, high = 1.0)=>{
 };
 const $3fc3b968ae0cf52c$export$f0d90cf68bd426eb = (n)=>{
     return Math.pow(2, Math.ceil(Math.log(n) / Math.log(2)));
-};
-window.math = {
-    lerp: $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f,
-    map: $3fc3b968ae0cf52c$export$871de8747c9eaa88,
-    constrain: $3fc3b968ae0cf52c$export$c4e2ecac49351ef2,
-    nextPow2: $3fc3b968ae0cf52c$export$f0d90cf68bd426eb
 };
 
 
@@ -774,22 +790,6 @@ const $3168d8109a341ea3$export$35e9368ef982300f = (options)=>{
         const div = (v1)=>v1 / 255;
         return Array.isArray(v) ? v.map(div) : div(v);
     });
-};
-window.rnd = {
-    setfn: $3168d8109a341ea3$export$b0728870bc7c976a,
-    num: $3168d8109a341ea3$export$61cc6a0be4938a2a,
-    int: $3168d8109a341ea3$export$7d260a2a5f8bc19e,
-    bool: $3168d8109a341ea3$export$87b259aa03e3d267,
-    choice: $3168d8109a341ea3$export$7a5825874deea16a,
-    exp: $3168d8109a341ea3$export$b310ec824aaee37f,
-    gauss: $3168d8109a341ea3$export$770bce1690f63f17,
-    gaussMinMax: $3168d8109a341ea3$export$30bcd85f437fc607,
-    cache: $3168d8109a341ea3$export$69a3209f1a06c04d,
-    cacheNum: $3168d8109a341ea3$export$63ed2dc4b9bddf35,
-    cacheGauss: $3168d8109a341ea3$export$ff729b6547d3cd4,
-    cacheGaussMinMax: $3168d8109a341ea3$export$1d95d1e0fadf82f8,
-    cacheBool: $3168d8109a341ea3$export$949f46e8b9b85930,
-    color: $3168d8109a341ea3$export$35e9368ef982300f
 };
 
 
@@ -2391,25 +2391,22 @@ function $6b43bac69b71d100$export$5ec52a817164e2df(noiseFn, H, opts) {
 // const redistributed = Math.pow(result, opts.redistribution);
 // return redistributed / max;
 }
-window.noise = {
-    perlin: $6b43bac69b71d100$export$1eca773ee6cf0fcc,
-    simplex: $6b43bac69b71d100$export$cdff0fdd5b0f2742,
-    pink: $6b43bac69b71d100$export$47853bc718611763,
-    brown: $6b43bac69b71d100$export$b6e6178d3f565007,
-    yellow: $6b43bac69b71d100$export$594c5a8758200c32,
-    improved: $6b43bac69b71d100$export$75f70b54b2b75878,
-    init: $6b43bac69b71d100$export$2cd8252107eb640b,
-    initPerlin: $6b43bac69b71d100$export$ae8059055a2327f1,
-    initSimplex: $6b43bac69b71d100$export$89117dd3963cebb7,
-    initFBM: $6b43bac69b71d100$export$5ca7a1d5f06a0627,
-    initImproved: $6b43bac69b71d100$export$1cca2dd0ffb5bfea,
-    fbm: $6b43bac69b71d100$export$5ec52a817164e2df,
-    get2: $6b43bac69b71d100$export$c6c37d5d787adc8a,
-    get3: $6b43bac69b71d100$export$abdab843d5b7c01b,
-    get4: $6b43bac69b71d100$export$7aa292d2922f05b3
-};
 
 
+var $9c47f2c9245cc4b2$exports = {};
+
+$parcel$export($9c47f2c9245cc4b2$exports, "create", () => $9c47f2c9245cc4b2$export$185802fd694ee1f5);
+$parcel$export($9c47f2c9245cc4b2$exports, "uint8", () => $9c47f2c9245cc4b2$export$52e103c63c4e68cf);
+$parcel$export($9c47f2c9245cc4b2$exports, "float32", () => $9c47f2c9245cc4b2$export$1a4bac2aea11f30e);
+$parcel$export($9c47f2c9245cc4b2$exports, "noise", () => $9c47f2c9245cc4b2$export$d3022aad56692482);
+$parcel$export($9c47f2c9245cc4b2$exports, "random", () => $9c47f2c9245cc4b2$export$4385e60b38654f68);
+$parcel$export($9c47f2c9245cc4b2$exports, "image", () => $9c47f2c9245cc4b2$export$5c452ff88e35e47d);
+$parcel$export($9c47f2c9245cc4b2$exports, "grid", () => $9c47f2c9245cc4b2$export$85fc379452d91af0);
+$parcel$export($9c47f2c9245cc4b2$exports, "sum", () => $9c47f2c9245cc4b2$export$8a63f25cc62965f1);
+$parcel$export($9c47f2c9245cc4b2$exports, "mul", () => $9c47f2c9245cc4b2$export$6e3a27864ab166fe);
+$parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$export$fcbe1efa6919329);
+$parcel$export($9c47f2c9245cc4b2$exports, "normalize", () => $9c47f2c9245cc4b2$export$a3295358bff77e);
+$parcel$export($9c47f2c9245cc4b2$exports, "avg", () => $9c47f2c9245cc4b2$export$86c4352b5bd9c815);
 
 
 const $9c47f2c9245cc4b2$export$185802fd694ee1f5 = (len, mapfn)=>{
@@ -2467,6 +2464,13 @@ const $9c47f2c9245cc4b2$export$5c452ff88e35e47d = (url)=>{
     });
     return data;
 };
+const $9c47f2c9245cc4b2$export$85fc379452d91af0 = (width, height, options = {})=>{
+    const data = new Uint8Array(width * height);
+    for(let i = 0; i < height; i++)for(let j = 0; j < width; j++)data[i * width + j] = (i / (height - 1) + j / (width - 1)) / 2 * 255;
+    data.width = width;
+    data.height = height;
+    return data;
+};
 const $9c47f2c9245cc4b2$export$8a63f25cc62965f1 = (list)=>{
     return list.reduce((partialSum, a)=>partialSum + a, 0);
 };
@@ -2487,21 +2491,13 @@ const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, min = 0, max = 0)=>{
 const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
     return arr.reduce((acc, value)=>acc + value, 0) / arr.length;
 };
-window.arr = {
-    create: $9c47f2c9245cc4b2$export$185802fd694ee1f5,
-    uint8: $9c47f2c9245cc4b2$export$52e103c63c4e68cf,
-    float32: $9c47f2c9245cc4b2$export$1a4bac2aea11f30e,
-    noise: $9c47f2c9245cc4b2$export$d3022aad56692482,
-    random: $9c47f2c9245cc4b2$export$4385e60b38654f68,
-    image: $9c47f2c9245cc4b2$export$5c452ff88e35e47d,
-    sum: $9c47f2c9245cc4b2$export$8a63f25cc62965f1,
-    mul: $9c47f2c9245cc4b2$export$6e3a27864ab166fe,
-    padTo: $9c47f2c9245cc4b2$export$fcbe1efa6919329,
-    normalize: $9c47f2c9245cc4b2$export$a3295358bff77e,
-    avg: $9c47f2c9245cc4b2$export$86c4352b5bd9c815
-};
 
 
+var $2d2b90f04cc861b4$exports = {};
+
+$parcel$export($2d2b90f04cc861b4$exports, "bw", () => $2d2b90f04cc861b4$export$45d219bdcd8ac53c);
+$parcel$export($2d2b90f04cc861b4$exports, "bin", () => $2d2b90f04cc861b4$export$f03e751d9cddb7a);
+$parcel$export($2d2b90f04cc861b4$exports, "extract", () => $2d2b90f04cc861b4$export$f9380c9a627682d3);
 
 
 const $2d2b90f04cc861b4$export$45d219bdcd8ac53c = (bufferSize, sampleRate)=>{
@@ -2535,13 +2531,14 @@ const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
     Meyda.bufferSize = origBufferSize;
     return values;
 };
-window.fft = {
-    bw: $2d2b90f04cc861b4$export$45d219bdcd8ac53c,
-    bin: $2d2b90f04cc861b4$export$f03e751d9cddb7a,
-    extract: $2d2b90f04cc861b4$export$f9380c9a627682d3
-};
 
 
+
+window.rnd = $3168d8109a341ea3$exports;
+window.noise = $6b43bac69b71d100$exports;
+window.arr = $9c47f2c9245cc4b2$exports;
+window.fft = $2d2b90f04cc861b4$exports;
+window.math = $3fc3b968ae0cf52c$exports;
 
 })();
 //# sourceMappingURL=index.js.map

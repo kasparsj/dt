@@ -40,6 +40,4 @@ const extract = (signal, options = {}) => {
     return values;
 }
 
-window.fft = { bw, bin, extract };
-
 export { bw, bin, extract };

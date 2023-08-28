@@ -130,12 +130,6 @@ function fbm(noiseFn, H, opts) {
     // return redistributed / max;
 }
 
-window.noise = {
-    perlin, simplex, pink, brown, yellow, improved,
-    init, initPerlin, initSimplex, initFBM, initImproved,
-    fbm, get2, get3, get4,
-};
-
 export {
     perlin, simplex, pink, brown, yellow, improved,
     init, initPerlin, initSimplex, initFBM, initImproved,

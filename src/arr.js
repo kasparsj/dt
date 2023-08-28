@@ -59,6 +59,18 @@ const image = (url) => {
     return data;
 }
 
+const grid = (width, height, options = {}) => {
+    const data = new Uint8Array(width * height);
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            data[i * width + j] = (i / (height-1) + j / (width-1)) / 2 * 255;
+        }
+    }
+    data.width = width;
+    data.height = height;
+    return data;
+}
+
 const sum = (list) => {
     return list.reduce((partialSum, a) => partialSum + a, 0);
 };
@@ -84,6 +96,4 @@ const avg = (arr) => {
     return arr.reduce((acc, value) => acc + value, 0) / arr.length;
 }
 
-window.arr = { create, uint8, float32, noise, random, image, sum, mul, padTo, normalize, avg };
-
-export { create, uint8, float32, noise, random, image, sum, mul, padTo, normalize, avg };
+export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, normalize, avg };
