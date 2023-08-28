@@ -62,6 +62,8 @@ const grid = (width, height = 1, options = {}) => {
         options = height;
         height = 1;
     }
+    width = width | 0;
+    height = height | 0;
     options = Object.assign({
         tw: width,
     }, options);
@@ -73,7 +75,7 @@ const grid = (width, height = 1, options = {}) => {
         }
     }
     data.width = options.tw;
-    data.height = width * height / options.tw;
+    data.height = (width * height) / options.tw;
     data.format = 'luminance alpha';
     return data;
 }

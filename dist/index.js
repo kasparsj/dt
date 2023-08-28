@@ -2468,6 +2468,8 @@ const $9c47f2c9245cc4b2$export$85fc379452d91af0 = (width, height = 1, options = 
         options = height;
         height = 1;
     }
+    width = width | 0;
+    height = height | 0;
     options = Object.assign({
         tw: width
     }, options);
