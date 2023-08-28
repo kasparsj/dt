@@ -2,7 +2,7 @@ const lerp = (a, b, perc) => {
     return a + (b - a) * perc;
 }
 
-const map = (n, start1, stop1, start2, stop2, withinBounds) => {
+const map = (n, start1, stop1, start2 = 0, stop2 = 1, withinBounds = false) => {
     const newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
     if (!withinBounds) {
         return newval;

@@ -700,7 +700,7 @@ $parcel$export($3fc3b968ae0cf52c$exports, "nextPow2", () => $3fc3b968ae0cf52c$ex
 const $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f = (a, b, perc)=>{
     return a + (b - a) * perc;
 };
-const $3fc3b968ae0cf52c$export$871de8747c9eaa88 = (n, start1, stop1, start2, stop2, withinBounds)=>{
+const $3fc3b968ae0cf52c$export$871de8747c9eaa88 = (n, start1, stop1, start2 = 0, stop2 = 1, withinBounds = false)=>{
     const newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
     if (!withinBounds) return newval;
     if (start2 < stop2) return $3fc3b968ae0cf52c$export$c4e2ecac49351ef2(newval, start2, stop2);
@@ -2405,8 +2405,10 @@ $parcel$export($9c47f2c9245cc4b2$exports, "image", () => $9c47f2c9245cc4b2$expor
 $parcel$export($9c47f2c9245cc4b2$exports, "sum", () => $9c47f2c9245cc4b2$export$8a63f25cc62965f1);
 $parcel$export($9c47f2c9245cc4b2$exports, "mul", () => $9c47f2c9245cc4b2$export$6e3a27864ab166fe);
 $parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$export$fcbe1efa6919329);
+$parcel$export($9c47f2c9245cc4b2$exports, "map", () => $9c47f2c9245cc4b2$export$871de8747c9eaa88);
 $parcel$export($9c47f2c9245cc4b2$exports, "normalize", () => $9c47f2c9245cc4b2$export$a3295358bff77e);
 $parcel$export($9c47f2c9245cc4b2$exports, "avg", () => $9c47f2c9245cc4b2$export$86c4352b5bd9c815);
+
 
 
 const $9c47f2c9245cc4b2$export$185802fd694ee1f5 = (len, mapfn)=>{
@@ -2512,9 +2514,32 @@ const $9c47f2c9245cc4b2$export$fcbe1efa6919329 = (arr, len, value = 0)=>{
     }
     return arr;
 };
-const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, min = 0, max = 0)=>{
-    max = max || Math.max(...arr);
-    return arr.map((value)=>(value - min) / (max - min));
+const $9c47f2c9245cc4b2$export$871de8747c9eaa88 = (arr, from = [
+    0,
+    0
+], to = [
+    0,
+    1
+])=>{
+    if (!Array.isArray(from)) from = [
+        from,
+        0
+    ];
+    from[1] || (from[1] = Math.max(...arr));
+    if (!Array.isArray(to)) to = [
+        0,
+        to
+    ];
+    return arr.map((value)=>$3fc3b968ae0cf52c$export$871de8747c9eaa88(value, from[0], from[1], to[0], to[1]));
+};
+const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, from = [
+    0,
+    0
+])=>{
+    return $9c47f2c9245cc4b2$export$871de8747c9eaa88(arr, [
+        min,
+        max
+    ]);
 };
 const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
     return arr.reduce((acc, value)=>acc + value, 0) / arr.length;

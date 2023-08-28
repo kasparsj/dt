@@ -1,5 +1,6 @@
 import * as noiseLib from "./noise";
 import * as rnd from "./rnd";
+import * as math from "./math";
 
 const create = (len, mapfn) => {
     return Array.from({length: len}, mapfn);
@@ -113,13 +114,19 @@ const padTo = (arr, len, value = 0) => {
     return arr;
 }
 
+const map = (arr, from = [0, 0], to = [0, 1]) => {
+    if (!Array.isArray(from)) from = [from, 0];
+    from[1] || (from[1] = Math.max(...arr));
+    if (!Array.isArray(to)) to = [0, to];
+    return arr.map(value => math.map(value, from[0], from[1], to[0], to[1]));
+}
+
 const normalize = (arr, min = 0, max = 0) => {
-    max = max || Math.max(...arr);
-    return arr.map(value => (value - min) / (max - min));
+    return map(arr, [min, max]);
 }
 
 const avg = (arr) => {
     return arr.reduce((acc, value) => acc + value, 0) / arr.length;
 }
 
-export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, normalize, avg };
+export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg };
