@@ -2532,10 +2532,7 @@ const $9c47f2c9245cc4b2$export$871de8747c9eaa88 = (arr, from = [
     ];
     return arr.map((value)=>$3fc3b968ae0cf52c$export$871de8747c9eaa88(value, from[0], from[1], to[0], to[1]));
 };
-const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, from = [
-    0,
-    0
-])=>{
+const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, min = 0, max = 0)=>{
     return $9c47f2c9245cc4b2$export$871de8747c9eaa88(arr, [
         min,
         max
@@ -2550,7 +2547,9 @@ var $2d2b90f04cc861b4$exports = {};
 
 $parcel$export($2d2b90f04cc861b4$exports, "bw", () => $2d2b90f04cc861b4$export$45d219bdcd8ac53c);
 $parcel$export($2d2b90f04cc861b4$exports, "bin", () => $2d2b90f04cc861b4$export$f03e751d9cddb7a);
+$parcel$export($2d2b90f04cc861b4$exports, "freq", () => $2d2b90f04cc861b4$export$8b37c28a89a20fdc);
 $parcel$export($2d2b90f04cc861b4$exports, "extract", () => $2d2b90f04cc861b4$export$f9380c9a627682d3);
+$parcel$export($2d2b90f04cc861b4$exports, "bandAvg", () => $2d2b90f04cc861b4$export$90cf44c78c4e9aef);
 
 
 const $2d2b90f04cc861b4$export$45d219bdcd8ac53c = (bufferSize, sampleRate)=>{
@@ -2559,30 +2558,39 @@ const $2d2b90f04cc861b4$export$45d219bdcd8ac53c = (bufferSize, sampleRate)=>{
 const $2d2b90f04cc861b4$export$f03e751d9cddb7a = (freq, bufferSize = 512, sampleRate = 44100)=>{
     return Math.floor(freq / $2d2b90f04cc861b4$export$45d219bdcd8ac53c(bufferSize, sampleRate));
 };
-const $2d2b90f04cc861b4$var$freq = (bin, bufferSize = 512, sampleRate = 44100)=>{
+const $2d2b90f04cc861b4$export$8b37c28a89a20fdc = (bin, bufferSize = 512, sampleRate = 44100)=>{
     return bin * $2d2b90f04cc861b4$export$45d219bdcd8ac53c(bufferSize, sampleRate);
 };
 const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
     options = Object.assign({
         bufferSize: 512,
         chunkSize: signal.length,
-        loBin: 0,
-        hiBin: 0,
         feature: "amplitudeSpectrum"
     }, options);
-    if (options.hiBin < 0) options.hiBin = options.bufferSize / 2 - 1;
     const origBufferSize = Meyda.bufferSize;
-    let values = [];
+    let fft = [];
     for(let i = 0; i < signal.length; i += options.chunkSize){
-        let data = signal.slice(i, i + options.chunkSize);
-        if (data.length < options.chunkSize) data = $9c47f2c9245cc4b2$export$fcbe1efa6919329(data, $3fc3b968ae0cf52c$export$f0d90cf68bd426eb(data.length));
+        let sig = signal.slice(i, i + options.chunkSize);
+        if (sig.length < options.chunkSize) sig = $9c47f2c9245cc4b2$export$fcbe1efa6919329(sig, $3fc3b968ae0cf52c$export$f0d90cf68bd426eb(sig.length));
         Meyda.bufferSize = options.bufferSize;
-        let fft = Meyda.extract(options.feature, data);
-        let value = $9c47f2c9245cc4b2$export$86c4352b5bd9c815(fft.slice(options.loBin, options.hiBin + 1));
-        values.push(value);
+        let data = Meyda.extract(options.feature, sig);
+        fft.push(data);
     }
     Meyda.bufferSize = origBufferSize;
-    return values;
+    return fft.length > 1 ? fft : fft[0];
+};
+const $2d2b90f04cc861b4$export$90cf44c78c4e9aef = (fft, options = {})=>{
+    options = Object.assign({
+        bufferSize: 512,
+        loBin: 0,
+        hiBin: 0
+    }, options);
+    if (options.hiBin < 0) options.hiBin = options.bufferSize / 2 - 1;
+    const chunkAvg = (chunk)=>{
+        return $9c47f2c9245cc4b2$export$86c4352b5bd9c815(chunk.slice(options.loBin, options.hiBin + 1));
+    };
+    if (Array.isArray(fft[0]) || fft[0] instanceof Float32Array) return fft.map(chunkAvg);
+    return chunkAvg(fft);
 };
 
 

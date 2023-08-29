@@ -17,27 +17,39 @@ const extract = (signal, options = {}) => {
     options = Object.assign({
         bufferSize: 512,
         chunkSize: signal.length,
+        feature: "amplitudeSpectrum",
+    }, options);
+    const origBufferSize = Meyda.bufferSize;
+    let fft = [];
+    for (let i=0; i<signal.length; i += options.chunkSize) {
+        let sig = signal.slice(i, i + options.chunkSize);
+        if (sig.length < options.chunkSize) {
+            sig = arr.padTo(sig, math.nextPow2(sig.length));
+        }
+        Meyda.bufferSize = options.bufferSize;
+        let data = Meyda.extract(options.feature, sig);
+        fft.push(data);
+    }
+    Meyda.bufferSize = origBufferSize;
+    return fft.length > 1 ? fft : fft[0];
+}
+
+const bandAvg = (fft, options = {}) => {
+    options = Object.assign({
+        bufferSize: 512,
         loBin: 0,
         hiBin: 0,
-        feature: "amplitudeSpectrum",
     }, options);
     if (options.hiBin < 0) {
         options.hiBin = options.bufferSize / 2 - 1;
     }
-    const origBufferSize = Meyda.bufferSize;
-    let values = [];
-    for (let i=0; i<signal.length; i += options.chunkSize) {
-        let data = signal.slice(i, i + options.chunkSize);
-        if (data.length < options.chunkSize) {
-            data = arr.padTo(data, math.nextPow2(data.length));
-        }
-        Meyda.bufferSize = options.bufferSize;
-        let fft = Meyda.extract(options.feature, data);
-        let value = arr.avg(fft.slice(options.loBin, options.hiBin + 1));
-        values.push(value);
+    const chunkAvg = (chunk) => {
+        return arr.avg(chunk.slice(options.loBin, options.hiBin + 1));
+    };
+    if (Array.isArray(fft[0]) || fft[0] instanceof Float32Array) {
+        return fft.map(chunkAvg);
     }
-    Meyda.bufferSize = origBufferSize;
-    return values;
+    return chunkAvg(fft);
 }
 
-export { bw, bin, extract };
+export { bw, bin, freq, extract, bandAvg };
