@@ -121,12 +121,24 @@ const map = (arr, from = [0, 0], to = [0, 1]) => {
     return arr.map(value => math.map(value, from[0], from[1], to[0], to[1]));
 }
 
-const normalize = (arr, min = 0, max = 0) => {
-    return map(arr, [min, max]);
+const normalize = (arr) => {
+    return map(arr);
 }
 
 const avg = (arr) => {
     return arr.reduce((acc, value) => acc + value, 0) / arr.length;
 }
 
-export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg };
+const flatten = (arr) => {
+    const flatArr = new (arr.constructor)();
+    for (const sub of arr) {
+        if (Array.isArray(sub)) {
+            flatArr.push(...sub);
+        } else {
+            flatArr.push(...Array.from(sub));
+        }
+    }
+    return flatArr;
+}
+
+export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg, flatten };

@@ -19,6 +19,8 @@ const extract = (signal, options = {}) => {
         chunkSize: signal.length,
         feature: "amplitudeSpectrum",
     }, options);
+    options.bufferSize = parseInt(options.bufferSize);
+    options.chunkSize = parseInt(options.chunkSize);
     const origBufferSize = Meyda.bufferSize;
     let fft = [];
     for (let i=0; i<signal.length; i += options.chunkSize) {
@@ -34,7 +36,7 @@ const extract = (signal, options = {}) => {
     return fft.length > 1 ? fft : fft[0];
 }
 
-const bandAvg = (fft, options = {}) => {
+const band = (fft, options = {}) => {
     options = Object.assign({
         bufferSize: 512,
         loBin: 0,
@@ -44,7 +46,7 @@ const bandAvg = (fft, options = {}) => {
         options.hiBin = options.bufferSize / 2 - 1;
     }
     const chunkAvg = (chunk) => {
-        return arr.avg(chunk.slice(options.loBin, options.hiBin + 1));
+        return chunk.slice(options.loBin, options.hiBin + 1);
     };
     if (Array.isArray(fft[0]) || fft[0] instanceof Float32Array) {
         return fft.map(chunkAvg);
@@ -52,4 +54,4 @@ const bandAvg = (fft, options = {}) => {
     return chunkAvg(fft);
 }
 
-export { bw, bin, freq, extract, bandAvg };
+export { bw, bin, freq, extract, band };

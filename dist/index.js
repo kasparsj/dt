@@ -2408,6 +2408,7 @@ $parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$expor
 $parcel$export($9c47f2c9245cc4b2$exports, "map", () => $9c47f2c9245cc4b2$export$871de8747c9eaa88);
 $parcel$export($9c47f2c9245cc4b2$exports, "normalize", () => $9c47f2c9245cc4b2$export$a3295358bff77e);
 $parcel$export($9c47f2c9245cc4b2$exports, "avg", () => $9c47f2c9245cc4b2$export$86c4352b5bd9c815);
+$parcel$export($9c47f2c9245cc4b2$exports, "flatten", () => $9c47f2c9245cc4b2$export$bffa455ba8c619a6);
 
 
 
@@ -2532,14 +2533,17 @@ const $9c47f2c9245cc4b2$export$871de8747c9eaa88 = (arr, from = [
     ];
     return arr.map((value)=>$3fc3b968ae0cf52c$export$871de8747c9eaa88(value, from[0], from[1], to[0], to[1]));
 };
-const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr, min = 0, max = 0)=>{
-    return $9c47f2c9245cc4b2$export$871de8747c9eaa88(arr, [
-        min,
-        max
-    ]);
+const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr)=>{
+    return $9c47f2c9245cc4b2$export$871de8747c9eaa88(arr);
 };
 const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
     return arr.reduce((acc, value)=>acc + value, 0) / arr.length;
+};
+const $9c47f2c9245cc4b2$export$bffa455ba8c619a6 = (arr)=>{
+    const flatArr = new arr.constructor();
+    for (const sub of arr)if (Array.isArray(sub)) flatArr.push(...sub);
+    else flatArr.push(...Array.from(sub));
+    return flatArr;
 };
 
 
@@ -2549,7 +2553,7 @@ $parcel$export($2d2b90f04cc861b4$exports, "bw", () => $2d2b90f04cc861b4$export$4
 $parcel$export($2d2b90f04cc861b4$exports, "bin", () => $2d2b90f04cc861b4$export$f03e751d9cddb7a);
 $parcel$export($2d2b90f04cc861b4$exports, "freq", () => $2d2b90f04cc861b4$export$8b37c28a89a20fdc);
 $parcel$export($2d2b90f04cc861b4$exports, "extract", () => $2d2b90f04cc861b4$export$f9380c9a627682d3);
-$parcel$export($2d2b90f04cc861b4$exports, "bandAvg", () => $2d2b90f04cc861b4$export$90cf44c78c4e9aef);
+$parcel$export($2d2b90f04cc861b4$exports, "band", () => $2d2b90f04cc861b4$export$236249644b838d24);
 
 
 const $2d2b90f04cc861b4$export$45d219bdcd8ac53c = (bufferSize, sampleRate)=>{
@@ -2567,6 +2571,8 @@ const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
         chunkSize: signal.length,
         feature: "amplitudeSpectrum"
     }, options);
+    options.bufferSize = parseInt(options.bufferSize);
+    options.chunkSize = parseInt(options.chunkSize);
     const origBufferSize = Meyda.bufferSize;
     let fft = [];
     for(let i = 0; i < signal.length; i += options.chunkSize){
@@ -2579,7 +2585,7 @@ const $2d2b90f04cc861b4$export$f9380c9a627682d3 = (signal, options = {})=>{
     Meyda.bufferSize = origBufferSize;
     return fft.length > 1 ? fft : fft[0];
 };
-const $2d2b90f04cc861b4$export$90cf44c78c4e9aef = (fft, options = {})=>{
+const $2d2b90f04cc861b4$export$236249644b838d24 = (fft, options = {})=>{
     options = Object.assign({
         bufferSize: 512,
         loBin: 0,
@@ -2587,7 +2593,7 @@ const $2d2b90f04cc861b4$export$90cf44c78c4e9aef = (fft, options = {})=>{
     }, options);
     if (options.hiBin < 0) options.hiBin = options.bufferSize / 2 - 1;
     const chunkAvg = (chunk)=>{
-        return $9c47f2c9245cc4b2$export$86c4352b5bd9c815(chunk.slice(options.loBin, options.hiBin + 1));
+        return chunk.slice(options.loBin, options.hiBin + 1);
     };
     if (Array.isArray(fft[0]) || fft[0] instanceof Float32Array) return fft.map(chunkAvg);
     return chunkAvg(fft);
