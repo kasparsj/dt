@@ -2408,7 +2408,7 @@ $parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$expor
 $parcel$export($9c47f2c9245cc4b2$exports, "map", () => $9c47f2c9245cc4b2$export$871de8747c9eaa88);
 $parcel$export($9c47f2c9245cc4b2$exports, "normalize", () => $9c47f2c9245cc4b2$export$a3295358bff77e);
 $parcel$export($9c47f2c9245cc4b2$exports, "avg", () => $9c47f2c9245cc4b2$export$86c4352b5bd9c815);
-$parcel$export($9c47f2c9245cc4b2$exports, "flatten", () => $9c47f2c9245cc4b2$export$bffa455ba8c619a6);
+$parcel$export($9c47f2c9245cc4b2$exports, "transpose", () => $9c47f2c9245cc4b2$export$9cb09a71b7d66923);
 
 
 
@@ -2539,11 +2539,9 @@ const $9c47f2c9245cc4b2$export$a3295358bff77e = (arr)=>{
 const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
     return arr.reduce((acc, value)=>acc + value, 0) / arr.length;
 };
-const $9c47f2c9245cc4b2$export$bffa455ba8c619a6 = (arr)=>{
-    const flatArr = new arr.constructor();
-    for (const sub of arr)if (Array.isArray(sub)) flatArr.push(...sub);
-    else flatArr.push(...Array.from(sub));
-    return flatArr;
+const $9c47f2c9245cc4b2$export$9cb09a71b7d66923 = (arr)=>{
+    if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
+    return arr[0].map((col, i)=>arr.map((row)=>row[i]));
 };
 
 

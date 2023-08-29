@@ -129,16 +129,9 @@ const avg = (arr) => {
     return arr.reduce((acc, value) => acc + value, 0) / arr.length;
 }
 
-const flatten = (arr) => {
-    const flatArr = new (arr.constructor)();
-    for (const sub of arr) {
-        if (Array.isArray(sub)) {
-            flatArr.push(...sub);
-        } else {
-            flatArr.push(...Array.from(sub));
-        }
-    }
-    return flatArr;
+const transpose = (arr) => {
+    if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
+    return arr[0].map((col, i) => arr.map(row => row[i]));
 }
 
-export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg, flatten };
+export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg, transpose };
