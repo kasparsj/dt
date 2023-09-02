@@ -2276,60 +2276,60 @@ const $6b43bac69b71d100$export$89117dd3963cebb7 = ({ seedFn: seedFn, scale: scal
         get3: function(x, y, z, scale2 = 1) {
             return $6b43bac69b71d100$var$simplex3D(x * scale * scale2, y * scale * scale2, z * scale * scale2);
         },
-        get4: function(x, y, z, w1, scale2 = 1) {
-            return $6b43bac69b71d100$var$simplex4D(x * scale * scale2, y * scale * scale2, z * scale * scale2, w1 * scale * scale2);
+        get4: function(x, y, z, w, scale2 = 1) {
+            return $6b43bac69b71d100$var$simplex4D(x * scale * scale2, y * scale * scale2, z * scale * scale2, w * scale * scale2);
         }
     };
 };
 const $6b43bac69b71d100$export$5ca7a1d5f06a0627 = ()=>{
     $6b43bac69b71d100$export$47853bc718611763 = {
-        get2: function(x, y, options) {
+        get2: function(x, y, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * f, y * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * scale * f, y * scale * f);
             }, 0, options);
         },
-        get3: function(x, y, z, options) {
+        get3: function(x, y, z, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * f, y * f, z * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * scale * f, y * scale * f, z * scale * f);
             }, 0, options);
         },
-        get4: function(x, y, z, options) {
+        get4: function(x, y, z, w, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * f, y * f, z * f, w * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * scale * f, y * scale * f, z * f, w * scale * f);
             }, 0, options);
         }
     };
     $6b43bac69b71d100$export$b6e6178d3f565007 = {
-        get2: function(x, y, z, w1, options) {
+        get2: function(x, y, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * f, y * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * scale * f, y * scale * f);
             }, 0.5, options);
         },
-        get3: function(x, y, z, options) {
+        get3: function(x, y, z, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * f, y * f, z * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * scale * f, y * scale * f, z * scale * f);
             }, 0.5, options);
         },
-        get4: function(x, y, z, options) {
+        get4: function(x, y, z, w, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * f, y * f, z * f, w * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * scale * f, y * scale * f, z * scale * f, w * scale * f);
             }, 0.5, options);
         }
     };
     $6b43bac69b71d100$export$594c5a8758200c32 = {
-        get2: function(x, y, options) {
+        get2: function(x, y, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * f, y * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get2(x * scale * f, y * scale * f);
             }, 1.0, options);
         },
-        get3: function(x, y, z, options) {
+        get3: function(x, y, z, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * f, y * f, z * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get3(x * scale * f, y * scale * f, z * scale * f);
             }, 1.0, options);
         },
-        get4: function(x, y, z, options) {
+        get4: function(x, y, z, w, scale = 1, options = {}) {
             return $6b43bac69b71d100$export$5ec52a817164e2df((f)=>{
-                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * f, y * f, z * f, w * f);
+                return $6b43bac69b71d100$export$cdff0fdd5b0f2742.get4(x * scale * f, y * scale * f, z * scale * f, w * scale * f);
             }, 1.0, options);
         }
     };
@@ -2351,7 +2351,8 @@ function $6b43bac69b71d100$export$c6c37d5d787adc8a(type, x, y, min = 0, max = 1,
         simplex: $6b43bac69b71d100$export$cdff0fdd5b0f2742,
         pink: $6b43bac69b71d100$export$47853bc718611763,
         brown: $6b43bac69b71d100$export$b6e6178d3f565007,
-        yellow: $6b43bac69b71d100$export$594c5a8758200c32
+        yellow: $6b43bac69b71d100$export$594c5a8758200c32,
+        improved: $6b43bac69b71d100$export$75f70b54b2b75878
     };
     return (0, $3fc3b968ae0cf52c$export$871de8747c9eaa88)(types[type].get2(x, y, scale), -1, 1, min, max);
 }
@@ -2361,21 +2362,22 @@ function $6b43bac69b71d100$export$abdab843d5b7c01b(type, x, y, z, min = 0, max =
         simplex: $6b43bac69b71d100$export$cdff0fdd5b0f2742,
         pink: $6b43bac69b71d100$export$47853bc718611763,
         brown: $6b43bac69b71d100$export$b6e6178d3f565007,
-        yellow: $6b43bac69b71d100$export$594c5a8758200c32
+        yellow: $6b43bac69b71d100$export$594c5a8758200c32,
+        improved: $6b43bac69b71d100$export$75f70b54b2b75878
     };
     return (0, $3fc3b968ae0cf52c$export$871de8747c9eaa88)(types[type].get3(x, y, z, scale), -1, 1, min, max);
 }
-function $6b43bac69b71d100$export$7aa292d2922f05b3(type, x, y, z, w1, min = 0, max = 1, scale = 1) {
+function $6b43bac69b71d100$export$7aa292d2922f05b3(type, x, y, z, w, min = 0, max = 1, scale = 1) {
     const types = {
         simplex: $6b43bac69b71d100$export$cdff0fdd5b0f2742,
         pink: $6b43bac69b71d100$export$47853bc718611763,
         brown: $6b43bac69b71d100$export$b6e6178d3f565007,
         yellow: $6b43bac69b71d100$export$594c5a8758200c32
     };
-    return (0, $3fc3b968ae0cf52c$export$871de8747c9eaa88)(types[type].get4(x, y, z, w1, scale), -1, 1, min, max);
+    return (0, $3fc3b968ae0cf52c$export$871de8747c9eaa88)(types[type].get4(x, y, z, w, scale), -1, 1, min, max);
 }
-function $6b43bac69b71d100$export$5ec52a817164e2df(noiseFn, H, opts) {
-    opts = Object.assign({}, $6b43bac69b71d100$var$options, opts || {});
+function $6b43bac69b71d100$export$5ec52a817164e2df(noiseFn, H, opts = {}) {
+    opts = Object.assign({}, $6b43bac69b71d100$var$options, opts);
     const G = Math.pow(2, -H);
     let frequency = 1.0;
     let amplitude = 1.0;
