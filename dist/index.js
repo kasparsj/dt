@@ -720,13 +720,20 @@ const $3168d8109a341ea3$var$gaussPrev = {};
 const $3168d8109a341ea3$export$b0728870bc7c976a = (func)=>{
     $3168d8109a341ea3$var$rndFn = func;
 };
-// random number between a and b (b is not included)
 const $3168d8109a341ea3$export$61cc6a0be4938a2a = (a = 0.0, b = 1.0)=>{
+    if (typeof b === "undefined") {
+        b = a;
+        a = 0;
+    }
     return (0, $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f)(a, b, $3168d8109a341ea3$var$rndFn());
 };
 // random integer between a and b (b is included)
 // requires a < b
 const $3168d8109a341ea3$export$7d260a2a5f8bc19e = (a, b)=>{
+    if (typeof b === "undefined") {
+        b = a;
+        a = 0;
+    }
     return Math.floor($3168d8109a341ea3$export$61cc6a0be4938a2a(a, b + 1));
 };
 // random boolean with p as percent likelihood of true

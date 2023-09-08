@@ -9,14 +9,21 @@ const setfn = (func) => {
     rndFn = func;
 }
 
-// random number between a and b (b is not included)
 const num = (a = 0.0, b = 1.0) => {
+    if (typeof(b) === 'undefined') {
+        b = a;
+        a = 0;
+    }
     return lerp(a, b, rndFn());
 }
 
 // random integer between a and b (b is included)
 // requires a < b
 const int = (a, b) => {
+    if (typeof(b) === 'undefined') {
+        b = a;
+        a = 0;
+    }
     return Math.floor(num(a, b + 1));
 }
 
