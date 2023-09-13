@@ -22,4 +22,12 @@ const nextPow2 = (n) => {
     return Math.pow(2, Math.ceil(Math.log(n) / Math.log(2)));
 }
 
-export { lerp, map, constrain, nextPow2 }
+const rad = (deg) => {
+    return deg * Math.PI / 180;
+}
+
+const deg = (rad) => {
+    return rad * 180 / Math.PI;
+}
+
+export { lerp, map, constrain, nextPow2, rad, deg }
