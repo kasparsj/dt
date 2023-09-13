@@ -130,8 +130,11 @@ const avg = (arr) => {
 }
 
 const transpose = (arr) => {
-    if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
-    return arr[0].map((col, i) => arr.map(row => row[i]));
+    if (arr.length) {
+        if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
+        return arr[0].map((col, i) => arr.map(row => row[i]));
+    }
+    return arr;
 }
 
 export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg, transpose };

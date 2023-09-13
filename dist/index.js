@@ -697,6 +697,8 @@ $parcel$export($3fc3b968ae0cf52c$exports, "lerp", () => $3fc3b968ae0cf52c$export
 $parcel$export($3fc3b968ae0cf52c$exports, "map", () => $3fc3b968ae0cf52c$export$871de8747c9eaa88);
 $parcel$export($3fc3b968ae0cf52c$exports, "constrain", () => $3fc3b968ae0cf52c$export$c4e2ecac49351ef2);
 $parcel$export($3fc3b968ae0cf52c$exports, "nextPow2", () => $3fc3b968ae0cf52c$export$f0d90cf68bd426eb);
+$parcel$export($3fc3b968ae0cf52c$exports, "rad", () => $3fc3b968ae0cf52c$export$29e4e862bebba87f);
+$parcel$export($3fc3b968ae0cf52c$exports, "deg", () => $3fc3b968ae0cf52c$export$61ddd819c68acdd);
 const $3fc3b968ae0cf52c$export$3a89f8d6f6bf6c9f = (a, b, perc)=>{
     return a + (b - a) * perc;
 };
@@ -711,6 +713,12 @@ const $3fc3b968ae0cf52c$export$c4e2ecac49351ef2 = (n, low = 0, high = 1.0)=>{
 };
 const $3fc3b968ae0cf52c$export$f0d90cf68bd426eb = (n)=>{
     return Math.pow(2, Math.ceil(Math.log(n) / Math.log(2)));
+};
+const $3fc3b968ae0cf52c$export$29e4e862bebba87f = (deg)=>{
+    return deg * Math.PI / 180;
+};
+const $3fc3b968ae0cf52c$export$61ddd819c68acdd = (rad)=>{
+    return rad * 180 / Math.PI;
 };
 
 
@@ -2549,8 +2557,11 @@ const $9c47f2c9245cc4b2$export$86c4352b5bd9c815 = (arr)=>{
     return arr.reduce((acc, value)=>acc + value, 0) / arr.length;
 };
 const $9c47f2c9245cc4b2$export$9cb09a71b7d66923 = (arr)=>{
-    if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
-    return arr[0].map((col, i)=>arr.map((row)=>row[i]));
+    if (arr.length) {
+        if (!Array.isArray(arr[0])) arr[0] = Array.from(arr[0]);
+        return arr[0].map((col, i)=>arr.map((row)=>row[i]));
+    }
+    return arr;
 };
 
 
