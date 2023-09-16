@@ -2476,7 +2476,7 @@ const $9c47f2c9245cc4b2$export$4385e60b38654f68 = (width, height = 1, options = 
     const cl = options.type === "float" ? Float32Array : Uint8Array;
     const data = new cl(width * height);
     for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
-        const n = options.min + Math.round($3168d8109a341ea3$export$61cc6a0be4938a2a() * options.max);
+        const n = options.type === "float" ? $3168d8109a341ea3$export$61cc6a0be4938a2a(options.min, options.max) : $3168d8109a341ea3$export$7d260a2a5f8bc19e(options.min, options.max);
         data[i * width + j] = n;
     }
     data.width = options.tw;

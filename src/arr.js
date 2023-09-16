@@ -49,7 +49,7 @@ const random = (width, height = 1, options = {}) => {
     const data = new cl(width * height);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
-            const n = options.min + Math.round(rnd.num() * options.max);
+            const n = options.type === 'float' ? rnd.num(options.min, options.max) : rnd.int(options.min, options.max);
             data[i * width + j] = n;
         }
     }
