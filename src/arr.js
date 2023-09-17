@@ -44,12 +44,25 @@ const random = (width, height = 1, options = {}) => {
         min: 0,
         tw: width,
     }, options);
-    options.max = options.max || (options.type === 'float' ? 1 : 255);
-    const cl = options.type === 'float' ? Float32Array : Uint8Array;
+    const dataType = ['float', 'bool'].indexOf(options.type) > -1 ? 'float32' : 'uint8';
+    options.max = options.max || (dataType === 'float32' ? 1 : 255);
+    const cl = dataType === 'float32' ? Float32Array : Uint8Array;
     const data = new cl(width * height);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
-            const n = options.type === 'float' ? rnd.num(options.min, options.max) : rnd.int(options.min, options.max);
+            let n;
+            switch (options.type) {
+                case 'bool':
+                    n = rnd.bool() ? 1 : 0;
+                    break;
+                case 'float':
+                    n = rnd.num(options.min, options.max);
+                    break;
+                case 'uint8':
+                default:
+                    n = rnd.int(options.min, options.max);
+                    break;
+            }
             data[i * width + j] = n;
         }
     }
