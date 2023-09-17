@@ -44,16 +44,31 @@ const random = (width, height = 1, options = {}) => {
         min: 0,
         tw: width,
     }, options);
-    const dataType = ['float', 'bool'].indexOf(options.type) > -1 ? 'float32' : 'uint8';
-    options.max = options.max || (dataType === 'float32' ? 1 : 255);
-    const cl = dataType === 'float32' ? Float32Array : Uint8Array;
-    const data = new cl(width * height);
+    const dataType = options.dataType || (['float', 'bool'].indexOf(options.type) > -1 ? 'float32' : 'uint8');
+    let data, max;
+    switch (dataType) {
+        case 'float':
+        case 'float32':
+            data = new Float32Array(width * height);
+            max = 1.0;
+            break;
+        case 'uint16':
+            data = new Uint16Array(width * height);
+            max = 511;
+            break;
+        case 'uint8':
+        default:
+            data = new Uint8Array(width * height);
+            max = 255;
+            break;
+    }
+    options.max || (options.max = max);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
             let n;
             switch (options.type) {
                 case 'bool':
-                    n = rnd.bool() ? 1 : 0;
+                    n = rnd.bool() ? options.max : options.min;
                     break;
                 case 'float':
                     n = rnd.num(options.min, options.max);

@@ -2472,18 +2472,33 @@ const $9c47f2c9245cc4b2$export$4385e60b38654f68 = (width, height = 1, options = 
         min: 0,
         tw: width
     }, options);
-    const dataType = [
+    const dataType = options.dataType || ([
         "float",
         "bool"
-    ].indexOf(options.type) > -1 ? "float32" : "uint8";
-    options.max = options.max || (dataType === "float32" ? 1 : 255);
-    const cl = dataType === "float32" ? Float32Array : Uint8Array;
-    const data = new cl(width * height);
+    ].indexOf(options.type) > -1 ? "float32" : "uint8");
+    let data, max;
+    switch(dataType){
+        case "float":
+        case "float32":
+            data = new Float32Array(width * height);
+            max = 1.0;
+            break;
+        case "uint16":
+            data = new Uint16Array(width * height);
+            max = 511;
+            break;
+        case "uint8":
+        default:
+            data = new Uint8Array(width * height);
+            max = 255;
+            break;
+    }
+    options.max || (options.max = max);
     for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
         let n;
         switch(options.type){
             case "bool":
-                n = $3168d8109a341ea3$export$87b259aa03e3d267() ? 1 : 0;
+                n = $3168d8109a341ea3$export$87b259aa03e3d267() ? options.max : options.min;
                 break;
             case "float":
                 n = $3168d8109a341ea3$export$61cc6a0be4938a2a(options.min, options.max);
