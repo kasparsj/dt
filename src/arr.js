@@ -20,13 +20,14 @@ const noise = (width, height = 1, options = {}) => {
     }
     options = Object.assign({
         type: 'improved',
+        offset: rnd.int(10000),
         scale: 1.0,
         tw: width,
     }, options);
     const data = new Uint8Array(width * height);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
-            const n = (noiseLib[options.type].get2(i, j, options.scale) + 1.0) / 2.0;
+            const n = (noiseLib[options.type].get2(i+options.offset, j, options.scale) + 1.0) / 2.0;
             data[i * width + j] = Math.round(n * 255);
         }
     }

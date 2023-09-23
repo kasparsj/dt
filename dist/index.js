@@ -2451,12 +2451,13 @@ const $9c47f2c9245cc4b2$export$d3022aad56692482 = (width, height = 1, options = 
     }
     options = Object.assign({
         type: "improved",
+        offset: $3168d8109a341ea3$export$7d260a2a5f8bc19e(10000),
         scale: 1.0,
         tw: width
     }, options);
     const data = new Uint8Array(width * height);
     for(let i = 0; i < height; i++)for(let j = 0; j < width; j++){
-        const n = ($6b43bac69b71d100$exports[options.type].get2(i, j, options.scale) + 1.0) / 2.0;
+        const n = ($6b43bac69b71d100$exports[options.type].get2(i + options.offset, j, options.scale) + 1.0) / 2.0;
         data[i * width + j] = Math.round(n * 255);
     }
     data.width = options.tw;
