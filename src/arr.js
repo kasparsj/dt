@@ -87,6 +87,84 @@ const random = (width, height = 1, options = {}) => {
     return data;
 }
 
+const mirror = (data) => {
+    const resultSize = data.length * 4;
+    const resultArray = new (data.constructor)(resultSize);
+    if (data.width && data.height) {
+        for (let i=0; i<data.width; i++) {
+            for (let j=0; j<data.height; j++) {
+                const k = j*data.width+i;
+                const l = j*2*data.width+i;
+                resultArray[l] = data[k];
+                resultArray[data.width+l] = data[j*data.width+data.width-i-1];
+                resultArray[data.length*2+l] = data[data.length-(j+1)*data.width+i];
+                resultArray[resultSize-l-1] = data[k];
+            }
+        }
+        resultArray.width = data.width*2;
+        resultArray.height = data.height*2;
+    }
+    else {
+        // todo: wrong chatgpt code
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[i] = data[data.length - 1 - i];
+        // }
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[data.length + i] = data[data.length - 1 - i];
+        // }
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[2 * data.length + i] = resultArray[i];
+        //     resultArray[3 * data.length + i] = resultArray[data.length + i];
+        // }
+    }
+    return resultArray;
+}
+
+const mirror1 = (data) => {
+    let resultArray;
+    if (data.width && data.height) {
+        const resultSize = (data.width*2-1) * (data.height*2-1);
+        resultArray = new (data.constructor)(resultSize);
+        for (let i=0; i<data.width; i++) {
+            for (let j=0; j<data.height; j++) {
+                const k = j*data.width+i;
+                const l = j*(2*data.width-1)+i;
+                resultArray[l] = data[k];
+                resultArray[resultSize-l-1] = data[k];
+                if (i > 0) {
+                    resultArray[data.width+l-1] = data[j*data.width+data.width-i-1];
+                    if (j > 0) {
+                        const m = (j-1)*(2*data.width-1)+i;
+                        resultArray[data.length*2-data.height+m-1] = data[data.length-(j+1)*data.width+i-1];
+                    }
+                }
+            }
+        }
+        resultArray.width = data.width*2-1;
+        resultArray.height = data.height*2-1;
+    }
+    else {
+        // todo: wrong chatgpt code
+        // const centerPixelsCount = Math.sqrt(data.length);
+        // const resultSize = 4 * data.length - centerPixelsCount * 4;
+        // resultArray = new (data.constructor)(resultSize);
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[i] = data[data.length - 1 - i];
+        // }
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[data.length + i] = data[data.length - 1 - i];
+        // }
+        // for (let i = 0; i < centerPixelsCount; i++) {
+        //     resultArray[2 * data.length + i] = data[data.length / 2];
+        // }
+        // for (let i = 0; i < data.length; i++) {
+        //     resultArray[2 * data.length + centerPixelsCount + i] = resultArray[i];
+        //     resultArray[3 * data.length + i] = resultArray[data.length + i];
+        // }
+        // return resultArray;
+    }
+    return resultArray;
+}
 const grid = (width, height = 1, options = {}) => {
     if (typeof(height) === 'object') {
         options = height;
@@ -166,4 +244,4 @@ const transpose = (arr) => {
     return arr;
 }
 
-export { create, uint8, float32, noise, random, image, grid, sum, mul, padTo, map, normalize, avg, transpose };
+export { create, uint8, float32, noise, random, mirror, mirror1, image, grid, sum, mul, padTo, map, normalize, avg, transpose };
