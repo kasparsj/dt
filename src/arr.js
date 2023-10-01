@@ -213,6 +213,13 @@ const mul = (list, mul) => {
     return list.map((v) => v * mul);
 };
 
+const concat = (list1, list2) => {
+    const result = new (list1.constructor)(list1.length + list2.length);
+    result.set(list1);
+    result.set(list2, list1.length);
+    return result;
+}
+
 const padTo = (arr, len, value = 0) => {
     if (arr.length < len) {
         const padding = new Array(len - arr.length).fill(value); // Creates an array filled with zeros.
@@ -244,4 +251,4 @@ const transpose = (arr) => {
     return arr;
 }
 
-export { create, uint8, float32, noise, random, mirror, mirror1, image, grid, sum, mul, padTo, map, normalize, avg, transpose };
+export { create, uint8, float32, noise, random, mirror, mirror1, image, grid, sum, mul, concat, padTo, map, normalize, avg, transpose };

@@ -2423,6 +2423,7 @@ $parcel$export($9c47f2c9245cc4b2$exports, "grid", () => $9c47f2c9245cc4b2$export
 $parcel$export($9c47f2c9245cc4b2$exports, "image", () => $9c47f2c9245cc4b2$export$5c452ff88e35e47d);
 $parcel$export($9c47f2c9245cc4b2$exports, "sum", () => $9c47f2c9245cc4b2$export$8a63f25cc62965f1);
 $parcel$export($9c47f2c9245cc4b2$exports, "mul", () => $9c47f2c9245cc4b2$export$6e3a27864ab166fe);
+$parcel$export($9c47f2c9245cc4b2$exports, "concat", () => $9c47f2c9245cc4b2$export$ee1b3e54f0441b22);
 $parcel$export($9c47f2c9245cc4b2$exports, "padTo", () => $9c47f2c9245cc4b2$export$fcbe1efa6919329);
 $parcel$export($9c47f2c9245cc4b2$exports, "map", () => $9c47f2c9245cc4b2$export$871de8747c9eaa88);
 $parcel$export($9c47f2c9245cc4b2$exports, "normalize", () => $9c47f2c9245cc4b2$export$a3295358bff77e);
@@ -2598,6 +2599,12 @@ const $9c47f2c9245cc4b2$export$8a63f25cc62965f1 = (list)=>{
 };
 const $9c47f2c9245cc4b2$export$6e3a27864ab166fe = (list, mul)=>{
     return list.map((v)=>v * mul);
+};
+const $9c47f2c9245cc4b2$export$ee1b3e54f0441b22 = (list1, list2)=>{
+    const result = new list1.constructor(list1.length + list2.length);
+    result.set(list1);
+    result.set(list2, list1.length);
+    return result;
 };
 const $9c47f2c9245cc4b2$export$fcbe1efa6919329 = (arr, len, value = 0)=>{
     if (arr.length < len) {
