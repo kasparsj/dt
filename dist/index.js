@@ -2601,15 +2601,19 @@ const $9c47f2c9245cc4b2$export$6e3a27864ab166fe = (list, mul)=>{
     return list.map((v)=>v * mul);
 };
 const $9c47f2c9245cc4b2$export$ee1b3e54f0441b22 = (list1, list2)=>{
-    const result = new list1.constructor(list1.length + list2.length);
-    result.set(list1);
-    result.set(list2, list1.length);
+    let result;
+    if (list1.concat) result = list1.concat(Array.from(list2));
+    else {
+        const result = new list1.constructor(list1.length + list2.length);
+        result.set(list1);
+        result.set(list2, list1.length);
+    }
     return result;
 };
 const $9c47f2c9245cc4b2$export$fcbe1efa6919329 = (arr, len, value = 0)=>{
     if (arr.length < len) {
-        const padding = new Array(len - arr.length).fill(value); // Creates an array filled with zeros.
-        return arr.concat(padding);
+        const padding = new arr.constructor(len - arr.length).fill(value);
+        return $9c47f2c9245cc4b2$export$ee1b3e54f0441b22(arr, padding);
     }
     return arr;
 };
