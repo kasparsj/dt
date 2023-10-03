@@ -222,8 +222,8 @@ const concat = (list1, list2) => {
 
 const padTo = (arr, len, value = 0) => {
     if (arr.length < len) {
-        const padding = new Array(len - arr.length).fill(value); // Creates an array filled with zeros.
-        return arr.concat(padding);
+        const padding = new (arr.constructor)(len - arr.length).fill(value);
+        return concat(arr, padding);
     }
     return arr;
 }
