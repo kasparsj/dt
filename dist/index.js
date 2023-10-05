@@ -2604,7 +2604,7 @@ const $9c47f2c9245cc4b2$export$ee1b3e54f0441b22 = (list1, list2)=>{
     let result;
     if (list1.concat) result = list1.concat(Array.from(list2));
     else {
-        const result = new list1.constructor(list1.length + list2.length);
+        result = new list1.constructor(list1.length + list2.length);
         result.set(list1);
         result.set(list2, list1.length);
     }
