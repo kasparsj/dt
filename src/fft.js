@@ -1,6 +1,3 @@
-import * as arr from "./arr";
-import * as math from "./math";
-
 const bw = (bufferSize, sampleRate) => {
     return sampleRate / bufferSize;
 }
